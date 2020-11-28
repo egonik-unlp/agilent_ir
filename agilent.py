@@ -44,6 +44,7 @@ def load_file(file):
     return obj
 
 #%% 
+'''
 class spectra(spectrum):
     def __init__(self):
         super().__init__()
@@ -52,7 +53,7 @@ class spectra(spectrum):
     def load_spectra(self) :
         [self.load_files() for i in imported_spectra]
         
-        
+'''
         
         
 #%% For testing purposes
