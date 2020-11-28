@@ -18,7 +18,7 @@ class spectrum():
         self.dict = 0 
         self.file = 0
     def load_files(self, file):
-        self.name = file
+        self.name = file[:-4]
         self.file = file
         self.parse_file()
 
@@ -44,21 +44,41 @@ def load_file(file):
     return obj
 
 #%% 
-'''
+
 class spectra(spectrum):
     def __init__(self):
         super().__init__()
-        self.wavenumber = {}
-    def append_data(self):
-    def load_spectra(self) :
-        [self.load_files() for i in imported_spectra]
+        self.index  = []
+        self.columns = {}
         
-'''
+        
+    def import_dir(self,directory, ft = '.asp'):
+        file_list = [file for file in os.listdir(directory) if ft in file[-len(ft):]]
+        path_list = [os.path.join(directory, file) for file in file_list ]
+        spectra_list = [load_file(file) for file in path_list]
+        self.columns =  {file[:-len(ft)] :sp.transmittance for file, sp in zip(file_list, spectra_list)}
+        self.index = np.array(spectra_list[0].wavenumber)
+        
+    def as_pandas(self):
+        return pd.DataFrame(data = self.columns)
+    def as_array(self):
+        return np.array(self.index, self.columns)
+    def as_dict(self):
+        full_dict = self.columns.copy()
+        full_dict['wavenumber'] = self.index
+        return full_dict
+        
+def load_dir(directory):
+    obj_sa = spectra()
+    obj_sa.import_dir(directory)
+    return obj_sa
         
         
 #%% For testing purposes
+'''
 os.chdir('/home/gonik/Documents/agilent_ir/test_data/IR')
 folder = os.getcwd()
 files = [i for i in  os.listdir() if '.asp' in i[-4:]]
 arch = spectrum()
 arch.load_files(files[1])
+'''
