@@ -20,7 +20,7 @@ class spectrum():
     def load_files(self, file):
         self.name = file
         self.file = file
-        self.parse_files()
+        self.parse_file()
 
     def parse_file(self):
         with open(self.file, 'r') as f:
@@ -32,21 +32,22 @@ class spectrum():
             self.transmittance = [float(line[0]) for line in reader]
 
     def as_pandas(self):
-        return pd.series(data = self.transmittance, index = self.wavenumber)
+        return pd.Series(data = self.transmittance, index = self.wavenumber)
     def as_dict(self):
         return {'wavenumber': self.wavenumber, 'transmittance': self.transmittance}
     def as_array(self):
-        return np.arrat(self.wavenumber. self.transmittance)
+        return np.array((self.wavenumber, self.transmittance))
 
-
+#%%
 class spectra(spectrum):
     def __init__(self):
         super().__init__()
         self.wavenumber = {}
     def append_data(self):
-    def load_spectra(self, imported_spectra):
+    def load_spectra(self) :
         [self.load_files() for i in imported_spectra]
-
+#%% For testing purposes
+os.chdir('/home/gonik/Documents/agilent_ir/test_data/IR')
 folder = os.getcwd()
 files = [i for i in  os.listdir() if '.asp' in i[-4:]]
 arch = spectrum()
