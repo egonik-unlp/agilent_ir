@@ -18,7 +18,7 @@ def parse_folder(path = '.', filter_asp = True, one_dict = True):
     else:
         files = [i for i in os.listdir(path = path)]
     if one_dict:
-        {'wavenumber': parse_file(files[0])['wavenumber'], file: trans for file, trans in zip(files,[])}
+        return {'wavenumber': parse_file(files[0])['wavenumber'], file: trans for file, trans in zip(files,[])}
     
 
 lista = os.listdir(path = '/home/gonik/Documents/agilent_ir/test_data/IR')
