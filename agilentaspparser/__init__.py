@@ -61,12 +61,15 @@ class spectra(spectrum):
         for sp, name in zip(self.spectra_list, self. name_list):
             sp.name = name[:-len(ft)] 
         
-    def import_dir(self,directory, ft = '.asp'):
-        file_list = [file for file in os.listdir(directory) if ft in file[-len(ft):]]
-        path_list = [os.path.join(directory, file) for file in file_list ]
-        self.name_list = file_list.copy()
-        self.spectra_list = [load_file(file) for file in path_list]
-        self.rename(ft = ft)
+    def import_obj(self,object, ft = '.asp'):
+        if type(object) == str:
+            file_list = [file for file in os.listdir(directory) if ft in file[-len(ft):]]
+            path_list = [os.path.join(directory, file) for file in file_list ]
+            self.name_list = file_list.copy()
+            self.spectra_list = [load_file(file) for file in path_list]
+            self.rename(ft = ft)
+        elif type(object) == list:
+            self.spectra_list = [load_file(file) for file in file_list if ft in file[-len(ft):]]
         self.columns =  {sp.name:sp.transmittance for sp in self.spectra_list}
         self.index = np.array(self.spectra_list[0].wavenumber)
 
@@ -88,14 +91,11 @@ class spectra(spectrum):
         self.as_pandas().to_csv(filename + '.csv')
     
         
-def load_dir(directory):
+def load_dir(object):
     obj_sa = spectra()
-    obj_sa.import_dir(directory)
+    obj_sa.import_obj(object)
     return obj_sa
-def load_list(file_list):
-    obj_sa = spectra()
-    obj_sa.import_list(file_list) ### Remove and incorporate into load_dir
-    return obj_sa
+
 
 
 
