@@ -44,6 +44,7 @@ def load_file(file):
     obj = spectrum()
     obj.load_files(file)    
     return obj
+## Add FTIR - appropiate plotting functionality
 
 class spectra(spectrum):
     def __init__(self):
@@ -97,5 +98,5 @@ def load_list(file_list):
     obj_sa.import_list(file_list)
     return obj_sa
 
-
+## add multiple spectra plotting
 
