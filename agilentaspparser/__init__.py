@@ -39,7 +39,7 @@ class spectrum():
         return {'wavenumber': self.wavenumber, 'transmittance': self.transmittance}
     def as_array(self):
         return np.array((self.wavenumber, self.transmittance))
-
+        
 def load_file(file):
     obj = spectrum()
     obj.load_files(file)    
