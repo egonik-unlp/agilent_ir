@@ -70,13 +70,8 @@ class spectra(spectrum):
         self.columns =  {sp.name:sp.transmittance for sp in self.spectra_list}
         self.index = np.array(self.spectra_list[0].wavenumber)
 
-<<<<<<< HEAD
     def import_list(self, file_list, ft = '.asp'):
         self.spectra_list = [load_file(file) for file in file_list if ft in file[-len(ft):]]
-=======
-    def import_list(self, file_list):
-        self.spectra_list = [load_file(file) for file in file_list]
->>>>>>> tom
         self.columns =  {sp.name:sp.transmittance for sp in self.spectra_list}
         self.index = np.array(self.spectra_list[0].wavenumber)
 
