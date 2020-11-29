@@ -94,7 +94,7 @@ def load_dir(directory):
     return obj_sa
 def load_list(file_list):
     obj_sa = spectra()
-    obj_sa.import_list(file_list)
+    obj_sa.import_list(file_list) ### Remove and incorporate into load_dir
     return obj_sa
 
 
