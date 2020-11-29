@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="agilentaspparser", # Replace with your own username
-    version="0.0.1",
+    version="0.0.2",
     author="Eduardo Gonik",
     author_email="gonik@quimica.unlp.edu.ar",
     description="Parser for Agilent IR .asp files",

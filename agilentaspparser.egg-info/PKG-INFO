@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: agilentaspparser
-Version: 0.0.1
+Version: 0.0.2
 Summary: Parser for Agilent IR .asp files
 Home-page: https://github.com/egonik-unlp/agilent_ir
 Author: Eduardo Gonik
