@@ -57,7 +57,7 @@ class spectra(spectrum):
     def __len__(self):
         return len(self.spectra_list)
     
-    def rename(self,ft):
+    def rename(self, ft):
         for sp, name in zip(self.spectra_list, self. name_list):
             sp.name = name[:-len(ft)] 
         
@@ -69,6 +69,12 @@ class spectra(spectrum):
         self.rename(ft = ft)
         self.columns =  {sp.name:sp.transmittance for sp in self.spectra_list}
         self.index = np.array(self.spectra_list[0].wavenumber)
+
+    def import_list(self, file_list):
+        self.spectra_list = [load_file(file) for file in file_list]
+        self.columns =  {sp.name:sp.transmittance for sp in self.spectra_list}
+        self.index = np.array(self.spectra_list[0].wavenumber)
+
         
     def as_pandas(self):
         return pd.DataFrame(data = self.columns, index = self.index)
@@ -80,10 +86,16 @@ class spectra(spectrum):
         return full_dict
     def export_csv(self, filename):
         self.as_pandas().to_csv(filename + '.csv')
+    
         
 def load_dir(directory):
     obj_sa = spectra()
     obj_sa.import_dir(directory)
     return obj_sa
-        
+def load_list(file_list):
+    obj_sa = spectra()
+    obj_sa.import_list(file_list)
+    return obj_sa
+
+
 
