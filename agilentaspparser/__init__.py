@@ -85,7 +85,7 @@ class spectra(spectrum):
         self.as_pandas().to_csv(filename + '.csv')
     
         
-def load_dir(object):
+def load_dir(object): ## by default should import current dir 
     obj_sa = spectra()
     obj_sa.import_obj(object)
     return obj_sa
