@@ -84,7 +84,10 @@ class spectra(spectrum):
     def export_csv(self, filename):
         self.as_pandas().to_csv(filename + '.csv')
     
-        
+
+    def __str__(self):
+        return f'Spectra({self.name_list})' 
+
 def load_dir(object = os.getcwd()): 
     obj_sa = spectra()
     obj_sa.import_obj(object)
